@@ -65,12 +65,17 @@ void Help::on_listWidget_currentTextChanged(const QString &currentText)
                           "6. Click apply.</p>");
     else if(currentText=="Mode")
         ui->text->setHtml("<p><u><strong>Switch mode</strong></u><strong>:</strong></p>"
-                          "<hr>"
+                          "<hr>"                         
                           "<p>Choose the mode which you want to work with, either titration or CPMG.&nbsp;</p>"
                           "<p>The current dataset will all be deleted when switching mode.</p>");
     else if(currentText=="About PLIS")
         ui->text->setHtml("<p><strong>Information about PLIS - Protein Ligand Interaction Software</strong><strong>:</strong></p>"
                           "<hr>"
+                          "<p>Copyright © 2020 Patrik Lundström and Emil Björklund"
+                          "<p>"
+                          "<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version."
+                          " This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details."
+                          "<p>"
                           "<p>PLIS was created as a Master Thesis project by Emil Bj&ouml;rklund in 2020 to help the researchers and students of Link&ouml;pings University with the analysis of mainly fluorescence spectroscopy data but also CPMG measurements from NMR.</p>"
                           "<p>The credits for both the id&eacute; and most of the features belong to the examiner of the project, Patrik Lundstr&ouml;m.&nbsp;</p>"
                           "<hr>"
