@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/img\"/>
+    <qresource prefix="/">
+        <file>img/background.png</file>
+        <file>img/bgui.png</file>
+        <file>img/color.png</file>
+        <file>img/deleteGraph.png</file>
+        <file>img/exit_icn.png</file>
+        <file>img/expand.png</file>
+        <file>img/export.png</file>
+        <file>img/file.png</file>
+        <file>img/fit.png</file>
+        <file>img/ftest.png</file>
+        <file>img/help.png</file>
+        <file>img/icon.qrc</file>
+        <file>img/logo.png</file>
+        <file>img/merge.png</file>
+        <file>img/modelbutton.png</file>
+        <file>img/open.png</file>
+        <file>img/pen.png</file>
+        <file>img/point.png</file>
+        <file>img/preset.png</file>
+        <file>img/printer.png</file>
+        <file>img/rc_icon.icns</file>
+        <file>img/rc_icon.png</file>
+        <file>img/save.png</file>
+        <file>img/trbutton.png</file>
+    </qresource>
+</RCC>
