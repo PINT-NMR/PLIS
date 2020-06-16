@@ -12,6 +12,7 @@ int open_project(QMainWindow *this1, QString &x, QString &y, QVector<Data*> &dat
                   int &current_dataSet, bool &is_disconnected, QVector<QCPGraph *> &graphSets, int &shape,
                   QCPTextElement *&title, QFont &xaxis_font, QFont &yaxis_font, QString &mode);
 
+void saveImage(Plis *plis, QCustomPlot *plot_area, QVector<Data*> dataSets, int current_dataSet);
 
 void line2words(const std::string& line, std::vector<std::string> &word);
 

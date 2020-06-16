@@ -386,7 +386,7 @@ QScrollArea#scrollArea_3{background-color: qlineargradient(spread:pad, x1:0, y1:
               <bool>false</bool>
              </property>
              <property name="text">
-              <string>Update Graph</string>
+              <string>Update graph</string>
              </property>
              <property name="autoDefault">
               <bool>false</bool>
@@ -807,8 +807,8 @@ QScrollArea#scrollArea_3{background-color: qlineargradient(spread:pad, x1:0, y1:
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>349</width>
-         <height>310</height>
+         <width>332</width>
+         <height>382</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_17">
@@ -843,8 +843,8 @@ QScrollArea#scrollArea_3{background-color: qlineargradient(spread:pad, x1:0, y1:
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>329</width>
-             <height>258</height>
+             <width>309</width>
+             <height>312</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_19">
@@ -1265,7 +1265,7 @@ QScrollArea#scrollArea_3{background-color: qlineargradient(spread:pad, x1:0, y1:
                </font>
               </property>
               <property name="text">
-               <string># of datapoints</string>
+               <string>No. datapoints</string>
               </property>
              </widget>
             </item>
@@ -1338,7 +1338,7 @@ QScrollArea#scrollArea_3{background-color: qlineargradient(spread:pad, x1:0, y1:
      <x>0</x>
      <y>0</y>
      <width>1043</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="font">
@@ -1400,6 +1400,7 @@ selection-background-color: rgb(209, 209, 209);</string>
      </property>
      <addaction name="actionOne_bindning_site"/>
      <addaction name="actionTwo_binding_sites"/>
+     <addaction name="actionFour_binding_sites"/>
      <addaction name="actionCompetitive_binding"/>
     </widget>
     <addaction name="menuFit_curve"/>
@@ -1415,6 +1416,7 @@ selection-background-color: rgb(209, 209, 209);</string>
      <string>Mode</string>
     </property>
     <addaction name="actionStandard"/>
+    <addaction name="actionTitration_NMR"/>
     <addaction name="switch_to_CPGM"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -1550,11 +1552,20 @@ selection-background-color: rgb(209, 209, 209);</string>
    </property>
   </action>
   <action name="actionStandard">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>Titration</string>
+    <string>Titration (normal)</string>
    </property>
   </action>
   <action name="switch_to_CPGM">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>CPMG</string>
    </property>
@@ -1571,7 +1582,7 @@ selection-background-color: rgb(209, 209, 209);</string>
   </action>
   <action name="actionInformation_about_PLIS">
    <property name="text">
-    <string>Information about PLIS</string>
+    <string>About PLIS</string>
    </property>
   </action>
   <action name="actionCopy_data_from_table">
@@ -1580,6 +1591,22 @@ selection-background-color: rgb(209, 209, 209);</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionTitration_NMR">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Titration (NMR)</string>
+   </property>
+  </action>
+  <action name="actionFour_binding_sites">
+   <property name="text">
+    <string>Four binding sites</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+4</string>
    </property>
   </action>
  </widget>

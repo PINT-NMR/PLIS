@@ -36,7 +36,7 @@ void Modify_text::on_font_clicked(){
     hide();
     bool ok{};
     if (mode==0){
-        QFont font = QFontDialog::getFont(&ok, axis_local->labelFont(), this, "Plis - Choose Font");
+        QFont font = QFontDialog::getFont(&ok, axis_local->labelFont(), this, "PLIS - Choose Font");
         if (ok){
             if (axis_local->axisType()==QCPAxis::atBottom)
                 *xlabel_font=font;
@@ -45,7 +45,7 @@ void Modify_text::on_font_clicked(){
         }
     }
     else if(mode==1){
-        QFont font = QFontDialog::getFont(&ok, title_local->font() , this, "Plis - Choose Font");
+        QFont font = QFontDialog::getFont(&ok, title_local->font() , this, "PLIS - Choose Font");
         if (ok){
             title_local->setFont(font);
         }
@@ -57,7 +57,7 @@ void Modify_text::on_label_text_clicked()
     hide();
     bool ok{};
     if(mode==0){
-        QString label = QInputDialog::getText(this, "Plis", "New axis label:", QLineEdit::Normal, axis_local->label(), &ok);
+        QString label = QInputDialog::getText(this, "PLIS", "New axis label:", QLineEdit::Normal, axis_local->label(), &ok);
         if (ok && label!="")
         {
             if (axis_local->axisType()==QCPAxis::atBottom)
@@ -67,7 +67,7 @@ void Modify_text::on_label_text_clicked()
         }
     }
     else if(mode==1){
-        QString newTitle = QInputDialog::getText(this, "Plis", "New plot title:", QLineEdit::Normal, title_local->text(), &ok);
+        QString newTitle = QInputDialog::getText(this, "PLIS", "New plot title:", QLineEdit::Normal, title_local->text(), &ok);
         if (ok && newTitle!="")
             title_local->setText(newTitle);
     }

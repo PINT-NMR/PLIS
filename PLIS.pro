@@ -34,15 +34,18 @@ SOURCES += \
     optimize.cpp \
     plis.cpp \
     data.cpp \
+    plot.cpp \
     qcustomplot.cpp \
     calculations.cpp \
+    result.cpp \
     simulatedialog.cpp \
     save_open.cpp \
     jackknife.cpp \
     legend.cpp \
     modify_data.cpp \
     show_result.cpp \
-    guess_parameters.cpp
+    guess_parameters.cpp \
+    table.cpp
 
 HEADERS += \
     help.h \
@@ -50,9 +53,11 @@ HEADERS += \
     optimize.h \
     plis.h \
     data.h \
+    plot.h \
     qcustomplot.h \
     calculations.h \
     fitmrq.h \
+    result.h \
     simulatedialog.h \
     nr3.h \
     save_open.h \
@@ -60,7 +65,8 @@ HEADERS += \
     legend.h \
     modify_data.h \
     show_result.h \
-    guess_parameters.h
+    guess_parameters.h \
+    table.h
 
 FORMS += \
     help.ui \

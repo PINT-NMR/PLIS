@@ -47,9 +47,10 @@ private:
 
     void simulateGenerateData(QVector<double> &x, double noise);
 
-    void one_site_sim();
-    void two_site_sim();
-    void comp_sim();
+    void one_site_sim(QString mode);
+    void two_site_sim(QString mode);
+    void four_site_sim(QString mode);
+    void comp_sim(QString mode);
 };
 
 #endif // SIMULATEDIALOG_H

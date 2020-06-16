@@ -15,7 +15,7 @@ class Optimize : public QDialog
     Q_OBJECT
 
 public:
-    explicit Optimize(QWidget *parent, Data* &d);
+    explicit Optimize(QWidget *parent, Data* &d, QString _mode);
     ~Optimize();
 
 private slots:
@@ -29,6 +29,7 @@ private:
     Ui::Optimize *ui;
     Data * data{};
     Data * last=nullptr;
+    QString mode{};
 };
 
 #endif // OPTIMIZE_H

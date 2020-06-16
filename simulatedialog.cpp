@@ -18,7 +18,7 @@ SimulateDialog::SimulateDialog(QWidget *parent) :
     ui->kdc->setValidator(v);
     mode="standard";
 
-    ui->tabWidget->removeTab(3);
+    ui->tabWidget->removeTab(4);
 
 #ifdef Q_OS_MAC
     ui->tabWidget->tabBar()->setFont(QFont("Helvetica", 12));
@@ -37,7 +37,7 @@ SimulateDialog::SimulateDialog(QWidget *parent, QString m) :
     ui->kex->setValidator(v);
     ui->pb->setValidator(v);
     ui->r20->setValidator(v);
-    for (int i=0;i<3;i++)
+    for (int i=0;i<4;i++)
         ui->tabWidget->removeTab(0);
 
     if(mode=="cpmg"){
@@ -66,10 +66,17 @@ SimulateDialog::~SimulateDialog()
     delete v;
 }
 
-void SimulateDialog::setup(QVector<Data*> &datasets, QString mode){
+double QS2d(QString s)
+{
+    s.replace(',','.');
+    return s.toDouble();
+}
+
+void SimulateDialog::setup(QVector<Data*> &datasets, QString _mode){
     dataSets_local=datasets;
     Data* temp=new Data;
-    if(mode=="standard"){
+    if (_mode=="standard" || _mode=="chemshift") {
+        mode = _mode;
         temp->a[0]=0;
         temp->a[1]=1;
         temp->a[2]=10;
@@ -79,7 +86,8 @@ void SimulateDialog::setup(QVector<Data*> &datasets, QString mode){
         temp->error_vector.clear();
         temp->protein_conc=10;
     }
-    else if(mode=="cpmg"){
+    else if(mode=="cpmg") {
+        mode = _mode;
         temp->a.clear();
         temp->a.push_back(5);
         temp->a.push_back(0.005);
@@ -94,7 +102,7 @@ void SimulateDialog::setup(QVector<Data*> &datasets, QString mode){
 
 void SimulateDialog::on_simulateButton_clicked()
 {
-    if(mode=="standard"){
+    if(mode=="standard" || mode=="chemshift"){
         double volume_step, ligand_stock;
         volume_step=(ui->maxVolume->value() - ui->minVolume->value()) / (ui->datapointBox->value()-1);
         ligand_stock=(ui->maxLigandBox->value()*ui->maxVolume->value()-ui->minLigandBox->value()*ui->minVolume->value())
@@ -111,29 +119,21 @@ void SimulateDialog::on_simulateButton_clicked()
         dataSets_local[current_dataSet]->curve_visible=false;
 
         if (ui->tabWidget->currentIndex()==0)
-            one_site_sim();
+            one_site_sim(mode);
         else if(ui->tabWidget->currentIndex()==1)
-            two_site_sim();
+            two_site_sim(mode);
         else if(ui->tabWidget->currentIndex()==2)
-            comp_sim();
+            four_site_sim(mode);
+        else if(ui->tabWidget->currentIndex()==3)
+            comp_sim(mode);
     }
-    else if(mode=="cpmg"){
-        QString s=ui->r20->text();
-        s.replace(',','.');
-        dataSets_local[current_dataSet]->a[0]=s.toDouble();
-        s=ui->dw->text();
-        s.replace(',','.');
-        dataSets_local[current_dataSet]->a[3]=s.toDouble();
-        s=ui->kex->text();
-        s.replace(',','.');
-        dataSets_local[current_dataSet]->a[1]=s.toDouble();
-        s=ui->pb->text();
-        s.replace(',','.');
-        dataSets_local[current_dataSet]->a[2]=s.toDouble();
-        s=ui->ligand_conc->text();
-        s.replace(',','.');
-        dataSets_local[current_dataSet]->a[4]=s.toDouble();
-        dataSets_local[current_dataSet]->ligand_cpmg=s.toDouble();
+    else if (mode=="cpmg"){
+        dataSets_local[current_dataSet]->a[0]=QS2d(ui->r20->text());
+        dataSets_local[current_dataSet]->a[3]=QS2d(ui->dw->text());
+        dataSets_local[current_dataSet]->a[1]=QS2d(ui->kex->text());
+        dataSets_local[current_dataSet]->a[2]=QS2d(ui->pb->text());
+        dataSets_local[current_dataSet]->a[4]=QS2d(ui->ligand_conc->text());
+        dataSets_local[current_dataSet]->ligand_cpmg=QS2d(ui->ligand_conc->text());
         double n=((ui->maxVolume->value()-ui->minVolume->value())/(ui->datapointBox->value()-1));
         for (int i=0;i<ui->datapointBox->value();i++){
             dataSets_local[current_dataSet]->n_cpmgVector.push_back(n*i+ui->minVolume->value());
@@ -151,84 +151,104 @@ void SimulateDialog::on_simulateButton_clicked()
 
 }
 
-void SimulateDialog::one_site_sim(){
+void SimulateDialog::one_site_sim(QString mode){
     dataSets_local[current_dataSet]->a[0]=ui->responce_start->value();
     dataSets_local[current_dataSet]->a[1]=ui->responce_end->value();
     QString s=ui->protein_conc->text();
-    s=ui->kd->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->a[2]=s.toDouble();
-    s=ui->protein_conc->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->protein_conc=s.toDouble();
+    dataSets_local[current_dataSet]->a[2]=QS2d(ui->kd->text());
+    dataSets_local[current_dataSet]->protein_conc=QS2d(ui->protein_conc->text());
     dataSets_local[current_dataSet]->a.push_back(dataSets_local[current_dataSet]->concVector[0]);
     dataSets_local[current_dataSet]->a.push_back(dataSets_local[current_dataSet]->protein_conc);
     dataSets_local[current_dataSet]->update_protein_conc();
 
-    for (int i=0; i<dataSets_local[current_dataSet]->concVector.size(); i++){
+    for (int i=0; i<dataSets_local[current_dataSet]->concVector.size(); i++) {
+        double (*dblptr)(const double, const double, const std::vector<double> &){fit_one_site_dilution};
+        if (mode=="chemshift")
+            dblptr = fit_one_site;
         dataSets_local[current_dataSet]->responceVector.push_back(
-                    fit_one_site_dilution(dataSets_local[current_dataSet]->concVector[i], dataSets_local[current_dataSet]->protein_conc_vector[i],
-                                 dataSets_local[current_dataSet]->a));
+                    dblptr(dataSets_local[current_dataSet]->concVector[i], dataSets_local[current_dataSet]->protein_conc_vector[i],
+                           dataSets_local[current_dataSet]->a));
     }
     simulateGenerateData(dataSets_local[current_dataSet]->responceVector,ui->noiseBox->value());
     hide();
 }
 
-void SimulateDialog::two_site_sim(){
+void SimulateDialog::two_site_sim(QString mode){
     dataSets_local[current_dataSet]->a[0]=ui->responce_s->value();
     dataSets_local[current_dataSet]->a[1]=ui->responce_I->value();
     dataSets_local[current_dataSet]->a[2]=ui->responce_L->value();
-    QString s=ui->kd1->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->a.push_back(s.toDouble());
-    s=ui->kd2->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->a.push_back(s.toDouble());
+    dataSets_local[current_dataSet]->a.push_back(QS2d(ui->kd1->text()));
+    dataSets_local[current_dataSet]->a.push_back(QS2d(ui->kd2->text()));
     dataSets_local[current_dataSet]->a.push_back(dataSets_local[current_dataSet]->concVector[0]); //since we need start conc for the calculations of zbrent
-    s=ui->protein_conc_2->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->a.push_back(s.toDouble());
-    dataSets_local[current_dataSet]->protein_conc=s.toDouble();
+    dataSets_local[current_dataSet]->a.push_back(QS2d(ui->protein_conc_2->text()));
+    dataSets_local[current_dataSet]->protein_conc=QS2d(ui->protein_conc_2->text());
     dataSets_local[current_dataSet]->update_protein_conc();
     for (int i=0;i<3;i++)
         dataSets_local[current_dataSet]->dyda.push_back(0);
-    for (int i=0; i<dataSets_local[current_dataSet]->concVector.size(); i++){
+    for (int i=0; i<dataSets_local[current_dataSet]->concVector.size(); i++) {
+        double (*dblptr)(const double, const double, const std::vector<double> &){fit_two_sites_dilution};
+        if (mode=="chemshift")
+            dblptr = fit_two_sites;
         dataSets_local[current_dataSet]->responceVector.push_back(
-                    fit_two_sites_dilution(dataSets_local[current_dataSet]->concVector[i], dataSets_local[current_dataSet]->protein_conc_vector[i],
-                                 dataSets_local[current_dataSet]->a));
+                    dblptr(dataSets_local[current_dataSet]->concVector[i],
+                           dataSets_local[current_dataSet]->protein_conc_vector[i],
+                           dataSets_local[current_dataSet]->a));
     }
     simulateGenerateData(dataSets_local[current_dataSet]->responceVector,ui->noiseBox->value());
     hide();
 
 }
 
-void SimulateDialog::comp_sim(){
+void SimulateDialog::four_site_sim(QString mode) {
+    dataSets_local[current_dataSet]->a = std::vector<double>(11);
+    dataSets_local[current_dataSet]->a[0]=QS2d(ui->response_p->text());
+    dataSets_local[current_dataSet]->a[1]=QS2d(ui->response_pl->text());
+    dataSets_local[current_dataSet]->a[2]=QS2d(ui->response_pl2->text());
+    dataSets_local[current_dataSet]->a[3]=QS2d(ui->response_pl3->text());
+    dataSets_local[current_dataSet]->a[4]=QS2d(ui->response_pl4->text());
+    dataSets_local[current_dataSet]->a[5]=(QS2d(ui->kd1_4->text()));
+    dataSets_local[current_dataSet]->a[6]=(QS2d(ui->kd2_4->text()));
+    dataSets_local[current_dataSet]->a[7]=(QS2d(ui->kd3_4->text()));
+    dataSets_local[current_dataSet]->a[8]=(QS2d(ui->kd4_4->text()));
+    dataSets_local[current_dataSet]->a[9]=(dataSets_local[current_dataSet]->concVector[0]); //since we need start conc for the calculations of zbrent
+    dataSets_local[current_dataSet]->a[10]=(QS2d(ui->protein_conc_4->text()));
+    dataSets_local[current_dataSet]->protein_conc=QS2d(ui->protein_conc_4->text());
+    dataSets_local[current_dataSet]->update_protein_conc();
+    for (int i=0;i<3;i++)
+        dataSets_local[current_dataSet]->dyda.push_back(0);
+    for (int i=0; i<dataSets_local[current_dataSet]->concVector.size(); i++) {
+        double (*dblptr)(const double, const double, const std::vector<double> &){fit_four_sites_dilution};
+        if (mode=="chemshift")
+            dblptr = fit_four_sites;
+        dataSets_local[current_dataSet]->responceVector.push_back(
+                    dblptr(dataSets_local[current_dataSet]->concVector[i],
+                           dataSets_local[current_dataSet]->protein_conc_vector[i],
+                           dataSets_local[current_dataSet]->a));
+    }
+    simulateGenerateData(dataSets_local[current_dataSet]->responceVector,ui->noiseBox->value());
+    hide();
+}
+
+void SimulateDialog::comp_sim(QString mode){
     dataSets_local[current_dataSet]->a[0]=ui->responce_s_comp->value();
     dataSets_local[current_dataSet]->a[1]=ui->responce_end_comp->value();
-    QString s=ui->kd1_comp->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->a[2]=s.toDouble();
-    s=ui->kd2_comp->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->a.push_back(s.toDouble());
-    s=ui->kdc->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->a.push_back(s.toDouble());
+    dataSets_local[current_dataSet]->a[2]=QS2d(ui->kd1_comp->text());
+    dataSets_local[current_dataSet]->a.push_back(QS2d(ui->kd2_comp->text()));
+    dataSets_local[current_dataSet]->a.push_back(QS2d(ui->kdc->text()));
     dataSets_local[current_dataSet]->a.push_back(dataSets_local[current_dataSet]->concVector[0]); //since we need start conc for the calculations of zbrent
-    s=ui->protein_conc_comp->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->a.push_back(s.toDouble());
-    dataSets_local[current_dataSet]->protein_conc=s.toDouble();
-    s=ui->start_comp->text();
-    s.replace(',','.');
-    dataSets_local[current_dataSet]->a.push_back(s.toDouble());
+    dataSets_local[current_dataSet]->a.push_back(QS2d(ui->protein_conc_comp->text()));
+    dataSets_local[current_dataSet]->protein_conc=QS2d(ui->protein_conc_comp->text());
+    dataSets_local[current_dataSet]->a.push_back(QS2d(ui->start_comp->text()));
     dataSets_local[current_dataSet]->update_protein_conc();
     dataSets_local[current_dataSet]->update_comp_vector(dataSets_local[current_dataSet]->a.back());
-    for (unsigned int i=0;i<dataSets_local[current_dataSet]->a.size();i++)
+    for (unsigned int i=0; i<dataSets_local[current_dataSet]->a.size(); i++)
         dataSets_local[current_dataSet]->dyda.push_back(0);
-    for (int i=0; i<dataSets_local[current_dataSet]->concVector.size(); i++){
+    for (int i=0; i<dataSets_local[current_dataSet]->concVector.size(); i++) {
+        double (*dblptr)(const double, const double, const double, const std::vector<double> &){fit_comp_dilution};
+        if (mode=="chemshift")
+            dblptr = fit_comp;
         dataSets_local[current_dataSet]->responceVector.push_back(
-                    fit_comp(dataSets_local[current_dataSet]->concVector[i], dataSets_local[current_dataSet]->protein_conc_vector[i],
+                    dblptr(dataSets_local[current_dataSet]->concVector[i], dataSets_local[current_dataSet]->protein_conc_vector[i],
                              dataSets_local[current_dataSet]->comp_vector[i], dataSets_local[current_dataSet]->a));
     }
     simulateGenerateData(dataSets_local[current_dataSet]->responceVector,ui->noiseBox->value());

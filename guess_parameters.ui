@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>556</width>
-    <height>398</height>
+    <height>569</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Plis - Guess parameters</string>
+   <string>Guess parameters</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
@@ -107,7 +107,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>478</width>
-                <height>244</height>
+                <height>415</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_4">
@@ -116,14 +116,14 @@
                  <item row="3" column="0">
                   <widget class="QLabel" name="start_label_one">
                    <property name="text">
-                    <string>Start responce:</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(P):</string>
                    </property>
                   </widget>
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="kd1__label_one">
                    <property name="text">
-                    <string>Kd 1: </string>
+                    <string>Kd: </string>
                    </property>
                   </widget>
                  </item>
@@ -158,10 +158,13 @@
                  <item row="3" column="1">
                   <widget class="QDoubleSpinBox" name="start_guess_one">
                    <property name="decimals">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <property name="maximum">
-                    <double>4000000.000000000000000</double>
+                    <double>3999998.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
                    </property>
                   </widget>
                  </item>
@@ -195,7 +198,7 @@
                  <item row="1" column="1">
                   <widget class="QDoubleSpinBox" name="kd1_one">
                    <property name="suffix">
-                    <string> µM</string>
+                    <string/>
                    </property>
                    <property name="decimals">
                     <number>3</number>
@@ -203,22 +206,28 @@
                    <property name="maximum">
                     <double>1000.000000000000000</double>
                    </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
                   </widget>
                  </item>
                  <item row="4" column="0">
                   <widget class="QLabel" name="end_label_one">
                    <property name="text">
-                    <string>End responce:</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(PL):</string>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="1">
                   <widget class="QDoubleSpinBox" name="end_guess_one">
                    <property name="decimals">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <property name="maximum">
                     <double>4000000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
                    </property>
                   </widget>
                  </item>
@@ -299,7 +308,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>478</width>
-                <height>244</height>
+                <height>415</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -308,14 +317,14 @@
                  <item row="1" column="2">
                   <widget class="QSpinBox" name="kd_number">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_17">
                    <property name="text">
-                    <string>Start responce</string>
+                    <string>s(P):</string>
                    </property>
                   </widget>
                  </item>
@@ -325,6 +334,9 @@
                     <widget class="QDoubleSpinBox" name="start_min">
                      <property name="maximum">
                       <double>3000000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -346,6 +358,9 @@
                      <property name="maximum">
                       <double>4000000.000000000000000</double>
                      </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
+                     </property>
                     </widget>
                    </item>
                   </layout>
@@ -366,15 +381,14 @@
                     </font>
                    </property>
                    <property name="text">
-                    <string># of datapoints 
-in the range</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;No. datapoints&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_14">
                    <property name="text">
-                    <string>Kd</string>
+                    <string>Kd:</string>
                    </property>
                   </widget>
                  </item>
@@ -420,7 +434,7 @@ in the range</string>
                  <item row="3" column="2">
                   <widget class="QSpinBox" name="start_number">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -498,6 +512,9 @@ in the range</string>
                      <property name="maximum">
                       <double>999.990000000000009</double>
                      </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
@@ -508,6 +525,9 @@ in the range</string>
                      <property name="maximum">
                       <double>1000.000000000000000</double>
                      </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                   </layout>
@@ -515,7 +535,7 @@ in the range</string>
                  <item row="4" column="0">
                   <widget class="QLabel" name="label_19">
                    <property name="text">
-                    <string>End responce</string>
+                    <string>s(PL):</string>
                    </property>
                   </widget>
                  </item>
@@ -526,12 +546,18 @@ in the range</string>
                      <property name="maximum">
                       <double>3000000.000000000000000</double>
                      </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
                     <widget class="QDoubleSpinBox" name="end_max">
                      <property name="maximum">
                       <double>4000000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -553,7 +579,7 @@ in the range</string>
                  <item row="4" column="2">
                   <widget class="QSpinBox" name="end_number">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -647,7 +673,7 @@ in the range</string>
                 <x>0</x>
                 <y>0</y>
                 <width>478</width>
-                <height>244</height>
+                <height>415</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -661,18 +687,24 @@ in the range</string>
                    <property name="maximum">
                     <double>4000000.000000000000000</double>
                    </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
                   </widget>
                  </item>
                  <item row="1" column="1">
                   <widget class="QDoubleSpinBox" name="kd1_two">
                    <property name="suffix">
-                    <string> µM</string>
+                    <string/>
                    </property>
                    <property name="decimals">
                     <number>3</number>
                    </property>
                    <property name="maximum">
                     <double>1000.000000000000000</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
                    </property>
                   </widget>
                  </item>
@@ -689,7 +721,7 @@ in the range</string>
                  <item row="1" column="0">
                   <widget class="QLabel" name="kd1_label_two">
                    <property name="text">
-                    <string>Kd 1: </string>
+                    <string>Kd1: </string>
                    </property>
                   </widget>
                  </item>
@@ -735,12 +767,15 @@ in the range</string>
                    <property name="maximum">
                     <double>4000000.000000000000000</double>
                    </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
                   </widget>
                  </item>
                  <item row="6" column="0">
                   <widget class="QLabel" name="intermediate_label_2">
                    <property name="text">
-                    <string>Intermediate responce:</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(PL):</string>
                    </property>
                   </widget>
                  </item>
@@ -768,7 +803,7 @@ in the range</string>
                  <item row="2" column="1">
                   <widget class="QDoubleSpinBox" name="kd2_two">
                    <property name="suffix">
-                    <string> µM</string>
+                    <string/>
                    </property>
                    <property name="decimals">
                     <number>3</number>
@@ -776,12 +811,15 @@ in the range</string>
                    <property name="maximum">
                     <double>1000.000000000000000</double>
                    </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
                   </widget>
                  </item>
                  <item row="2" column="0">
                   <widget class="QLabel" name="kd2_label_two">
                    <property name="text">
-                    <string>Kd 2: </string>
+                    <string>Kd2: </string>
                    </property>
                   </widget>
                  </item>
@@ -795,14 +833,14 @@ in the range</string>
                  <item row="7" column="0">
                   <widget class="QLabel" name="end_label_2">
                    <property name="text">
-                    <string>End responce:</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(PL&lt;sub&gt;2&lt;/sub&gt;):</string>
                    </property>
                   </widget>
                  </item>
                  <item row="5" column="0">
                   <widget class="QLabel" name="start_label_2">
                    <property name="text">
-                    <string>Start responce:</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(P):</string>
                    </property>
                   </widget>
                  </item>
@@ -813,6 +851,9 @@ in the range</string>
                    </property>
                    <property name="maximum">
                     <double>4000000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
                    </property>
                   </widget>
                  </item>
@@ -890,7 +931,7 @@ in the range</string>
                 <x>0</x>
                 <y>0</y>
                 <width>478</width>
-                <height>262</height>
+                <height>415</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_18">
@@ -899,7 +940,7 @@ in the range</string>
                  <item row="2" column="2">
                   <widget class="QSpinBox" name="kd2_number_2">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -913,6 +954,9 @@ in the range</string>
                      <property name="maximum">
                       <double>999.990000000000009</double>
                      </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
@@ -922,6 +966,9 @@ in the range</string>
                      </property>
                      <property name="maximum">
                       <double>1000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -943,14 +990,14 @@ in the range</string>
                  <item row="4" column="0">
                   <widget class="QLabel" name="label_21">
                    <property name="text">
-                    <string>Start responce</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(P):</string>
                    </property>
                   </widget>
                  </item>
                  <item row="1" column="2">
                   <widget class="QSpinBox" name="kd_number_2">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -970,8 +1017,7 @@ in the range</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string># of datapoints 
-in the range</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;No. datapoints&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -981,6 +1027,9 @@ in the range</string>
                     <widget class="QDoubleSpinBox" name="start_min_2">
                      <property name="maximum">
                       <double>3000000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -1001,6 +1050,9 @@ in the range</string>
                     <widget class="QDoubleSpinBox" name="start_max_2">
                      <property name="maximum">
                       <double>4000000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -1027,7 +1079,7 @@ in the range</string>
                  <item row="4" column="2">
                   <widget class="QSpinBox" name="start_number_2">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -1079,7 +1131,7 @@ in the range</string>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_24">
                    <property name="text">
-                    <string>Kd1</string>
+                    <string>Kd1:</string>
                    </property>
                   </widget>
                  </item>
@@ -1113,7 +1165,7 @@ in the range</string>
                  <item row="6" column="0">
                   <widget class="QLabel" name="label_29">
                    <property name="text">
-                    <string>End responce</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(PL&lt;sub&gt;2&lt;/sub&gt;):</string>
                    </property>
                   </widget>
                  </item>
@@ -1143,6 +1195,9 @@ in the range</string>
                      <property name="maximum">
                       <double>999.990000000000009</double>
                      </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
@@ -1153,6 +1208,9 @@ in the range</string>
                      <property name="maximum">
                       <double>1000.000000000000000</double>
                      </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                   </layout>
@@ -1160,7 +1218,7 @@ in the range</string>
                  <item row="6" column="2">
                   <widget class="QSpinBox" name="end_number_2">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -1171,12 +1229,18 @@ in the range</string>
                      <property name="maximum">
                       <double>3000000.000000000000000</double>
                      </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
                     <widget class="QDoubleSpinBox" name="end_max_2">
                      <property name="maximum">
                       <double>4000000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -1205,7 +1269,7 @@ in the range</string>
                  <item row="2" column="0">
                   <widget class="QLabel" name="label_32">
                    <property name="text">
-                    <string>Kd2</string>
+                    <string>Kd2:</string>
                    </property>
                   </widget>
                  </item>
@@ -1219,7 +1283,7 @@ in the range</string>
                  <item row="5" column="0">
                   <widget class="QLabel" name="label_34">
                    <property name="text">
-                    <string>Int responce</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(PL):</string>
                    </property>
                   </widget>
                  </item>
@@ -1243,12 +1307,18 @@ in the range</string>
                      <property name="maximum">
                       <double>3000000.000000000000000</double>
                      </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
                     <widget class="QDoubleSpinBox" name="intermediate_max">
                      <property name="maximum">
                       <double>4000000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -1257,7 +1327,7 @@ in the range</string>
                  <item row="5" column="2">
                   <widget class="QSpinBox" name="intermediate_number">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -1307,6 +1377,1134 @@ in the range</string>
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Four site</string>
+      </attribute>
+      <widget class="QTabWidget" name="tabWidget_four">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>6</y>
+         <width>506</width>
+         <height>431</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tab_exact_3">
+        <attribute name="title">
+         <string>Exact values</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_44">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QScrollArea" name="scrollArea_11">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents_5">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>478</width>
+              <height>378</height>
+             </rect>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_47">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_68">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Please, estimate the different parameters.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <layout class="QGridLayout" name="gridLayout_48">
+               <item row="9" column="1">
+                <widget class="QDoubleSpinBox" name="PL2_guess_four">
+                 <property name="decimals">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <double>4000000.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.100000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="4">
+                <widget class="QCheckBox" name="P_check_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_90">
+                 <property name="text">
+                  <string>Kd3:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="4">
+                <widget class="QCheckBox" name="PL2_check_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="tristate">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_63">
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Parameter</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="0">
+                <widget class="QLabel" name="label_89">
+                 <property name="text">
+                  <string>&lt;I&gt;s&lt;/I&gt;(PL&lt;sub&gt;4&lt;/sub&gt;):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QCheckBox" name="kd2_check_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="Line" name="line_8">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QDoubleSpinBox" name="kd3_four">
+                 <property name="suffix">
+                  <string/>
+                 </property>
+                 <property name="decimals">
+                  <number>3</number>
+                 </property>
+                 <property name="maximum">
+                  <double>4000000.000000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="0">
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>&lt;I&gt;s&lt;/I&gt;(PL&lt;sub&gt;3&lt;/sub&gt;):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="4">
+                <widget class="QCheckBox" name="PL_check_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="end_label_4">
+                 <property name="text">
+                  <string>&lt;I&gt;s&lt;/I&gt;(PL&lt;sub&gt;2&lt;/sub&gt;):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QDoubleSpinBox" name="kd1_four">
+                 <property name="suffix">
+                  <string/>
+                 </property>
+                 <property name="decimals">
+                  <number>3</number>
+                 </property>
+                 <property name="maximum">
+                  <double>1000.000000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="1">
+                <widget class="QDoubleSpinBox" name="PL4_guess_four">
+                 <property name="decimals">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <double>4000000.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.100000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="kd1_label_two_2">
+                 <property name="text">
+                  <string>Kd1: </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QCheckBox" name="kd1_check_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="1">
+                <widget class="QDoubleSpinBox" name="PL3_guess_four">
+                 <property name="decimals">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <double>4000000.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.100000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="start_label_5">
+                 <property name="text">
+                  <string>&lt;I&gt;s&lt;/I&gt;(P):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QDoubleSpinBox" name="kd2_four">
+                 <property name="suffix">
+                  <string/>
+                 </property>
+                 <property name="decimals">
+                  <number>3</number>
+                 </property>
+                 <property name="maximum">
+                  <double>1000.000000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <spacer name="horizontalSpacer_22">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="8" column="1">
+                <widget class="QDoubleSpinBox" name="PL_guess_four">
+                 <property name="decimals">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <double>4000000.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.100000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QDoubleSpinBox" name="P_guess_four">
+                 <property name="decimals">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <double>4000000.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.100000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="kd2_label_two_2">
+                 <property name="text">
+                  <string>Kd2: </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QLabel" name="label_61">
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Fixed</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="0">
+                <widget class="QLabel" name="intermediate_label_3">
+                 <property name="text">
+                  <string>&lt;I&gt;s&lt;/I&gt;(PL):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="label_91">
+                 <property name="text">
+                  <string>Kd4:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QDoubleSpinBox" name="kd4_four">
+                 <property name="suffix">
+                  <string/>
+                 </property>
+                 <property name="decimals">
+                  <number>3</number>
+                 </property>
+                 <property name="maximum">
+                  <double>4000000.000000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="4">
+                <widget class="QCheckBox" name="kd3_check_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="4">
+                <widget class="QCheckBox" name="kd4_check_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="4">
+                <widget class="QCheckBox" name="PL3_check_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="4">
+                <widget class="QCheckBox" name="PL4_check_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="4" column="0">
+              <spacer name="verticalSpacer_10">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_range_5">
+        <attribute name="title">
+         <string>Range</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_49">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QScrollArea" name="scrollArea_6">
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents_11">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>478</width>
+              <height>385</height>
+             </rect>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_50">
+             <item row="1" column="0">
+              <layout class="QGridLayout" name="gridLayout_51">
+               <item row="7" column="1">
+                <layout class="QGridLayout" name="gridLayout_56">
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_87">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>to</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QDoubleSpinBox" name="PL_min_four">
+                   <property name="maximum">
+                    <double>3000000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QDoubleSpinBox" name="PL_max_four">
+                   <property name="maximum">
+                    <double>4000000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="5" column="0">
+                <widget class="Line" name="line_9">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <layout class="QGridLayout" name="gridLayout_52">
+                 <item row="0" column="0">
+                  <widget class="QDoubleSpinBox" name="kd2_min_four">
+                   <property name="decimals">
+                    <number>3</number>
+                   </property>
+                   <property name="maximum">
+                    <double>999.990000000000009</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QDoubleSpinBox" name="kd2_max_four">
+                   <property name="decimals">
+                    <number>3</number>
+                   </property>
+                   <property name="maximum">
+                    <double>1000.000000000000000</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_74">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>to</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="8" column="0">
+                <widget class="QLabel" name="label_82">
+                 <property name="text">
+                  <string>s(PL2):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QSpinBox" name="kd1_number_four">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="label_76">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>8</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;No. datapoints&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="label_94">
+                 <property name="text">
+                  <string>Kd4</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QLabel" name="label_79">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                   <underline>true</underline>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Fixed</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="1">
+                <layout class="QGridLayout" name="gridLayout_55">
+                 <item row="0" column="0">
+                  <widget class="QDoubleSpinBox" name="PL2_min_four">
+                   <property name="maximum">
+                    <double>3000000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QDoubleSpinBox" name="PL2_max_four">
+                   <property name="maximum">
+                    <double>4000000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_84">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>to</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="1" column="1">
+                <layout class="QGridLayout" name="gridLayout_54">
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_83">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>to </string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QDoubleSpinBox" name="kd1_min_four">
+                   <property name="decimals">
+                    <number>3</number>
+                   </property>
+                   <property name="maximum">
+                    <double>999.990000000000009</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QDoubleSpinBox" name="kd1_max_four">
+                   <property name="decimals">
+                    <number>3</number>
+                   </property>
+                   <property name="maximum">
+                    <double>1000.000000000000000</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_78">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                   <underline>true</underline>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Range</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="label_75">
+                 <property name="text">
+                  <string>s(P):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="2">
+                <widget class="QSpinBox" name="PL_number_four">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <layout class="QGridLayout" name="gridLayout_53">
+                 <item row="0" column="0">
+                  <widget class="QDoubleSpinBox" name="P_min_four">
+                   <property name="maximum">
+                    <double>3000000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_77">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>to</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QDoubleSpinBox" name="P_max_four">
+                   <property name="maximum">
+                    <double>4000000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="8" column="2">
+                <widget class="QSpinBox" name="PL2_number_four">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_92">
+                 <property name="text">
+                  <string>Kd3</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_80">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                   <underline>true</underline>
+                  </font>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="text">
+                  <string>Parameter</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QSpinBox" name="kd2_number_four">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_81">
+                 <property name="text">
+                  <string>Kd1</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3">
+                <widget class="QCheckBox" name="kd2_check_range_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="3">
+                <widget class="QCheckBox" name="P_check_range_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="2">
+                <widget class="QSpinBox" name="P_number_four">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_85">
+                 <property name="text">
+                  <string>Kd2</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <layout class="QGridLayout" name="gridLayout_57">
+                 <item row="0" column="0">
+                  <widget class="QDoubleSpinBox" name="kd3_min_four">
+                   <property name="decimals">
+                    <number>3</number>
+                   </property>
+                   <property name="maximum">
+                    <double>999.990000000000009</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QDoubleSpinBox" name="kd3_max_four">
+                   <property name="decimals">
+                    <number>3</number>
+                   </property>
+                   <property name="maximum">
+                    <double>1000.000000000000000</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_93">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>to</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="1" column="3">
+                <widget class="QCheckBox" name="kd1_check_range_four">
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="3">
+                <widget class="QCheckBox" name="PL_check_range_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="label_96">
+                 <property name="text">
+                  <string>s(PL3):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="3">
+                <widget class="QCheckBox" name="PL2_check_range_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="label_86">
+                 <property name="text">
+                  <string>s(PL):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <layout class="QGridLayout" name="gridLayout_58">
+                 <item row="0" column="0">
+                  <widget class="QDoubleSpinBox" name="kd4_min_four">
+                   <property name="decimals">
+                    <number>3</number>
+                   </property>
+                   <property name="maximum">
+                    <double>999.990000000000009</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QDoubleSpinBox" name="kd4_max_four">
+                   <property name="decimals">
+                    <number>3</number>
+                   </property>
+                   <property name="maximum">
+                    <double>1000.000000000000000</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_95">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>to</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="10" column="0">
+                <widget class="QLabel" name="label_97">
+                 <property name="text">
+                  <string>s(PL4):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="1">
+                <layout class="QGridLayout" name="gridLayout_59">
+                 <item row="0" column="0">
+                  <widget class="QDoubleSpinBox" name="PL3_min_four">
+                   <property name="decimals">
+                    <number>2</number>
+                   </property>
+                   <property name="maximum">
+                    <double>999.990000000000009</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QDoubleSpinBox" name="PL3_max_four">
+                   <property name="decimals">
+                    <number>2</number>
+                   </property>
+                   <property name="maximum">
+                    <double>1000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_98">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>to</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="10" column="1">
+                <layout class="QGridLayout" name="gridLayout_60">
+                 <item row="0" column="0">
+                  <widget class="QDoubleSpinBox" name="PL4_min_four">
+                   <property name="decimals">
+                    <number>2</number>
+                   </property>
+                   <property name="maximum">
+                    <double>999.990000000000009</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QDoubleSpinBox" name="PL4_max_four">
+                   <property name="decimals">
+                    <number>2</number>
+                   </property>
+                   <property name="maximum">
+                    <double>1000.000000000000000</double>
+                   </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLabel" name="label_99">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>to</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="3" column="2">
+                <widget class="QSpinBox" name="kd3_number_four">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QSpinBox" name="kd4_number_four">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="2">
+                <widget class="QSpinBox" name="PL3_number_four">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="2">
+                <widget class="QSpinBox" name="PL4_number_four">
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3">
+                <widget class="QCheckBox" name="kd3_check_range_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <widget class="QCheckBox" name="kd4_check_range_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="3">
+                <widget class="QCheckBox" name="PL3_check_range_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="3">
+                <widget class="QCheckBox" name="PL4_check_range_four">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_88">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Please, estimate the different parameters.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <spacer name="verticalSpacer_11">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
      <widget class="QWidget" name="tab_comp">
       <attribute name="title">
        <string>Competitive binding</string>
@@ -1351,7 +2549,7 @@ in the range</string>
                 <x>0</x>
                 <y>0</y>
                 <width>478</width>
-                <height>244</height>
+                <height>415</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_27">
@@ -1375,12 +2573,15 @@ in the range</string>
                    <property name="maximum">
                     <double>4000000.000000000000000</double>
                    </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
                   </widget>
                  </item>
                  <item row="1" column="1">
                   <widget class="QDoubleSpinBox" name="kd1_comp">
                    <property name="suffix">
-                    <string> µM</string>
+                    <string/>
                    </property>
                    <property name="decimals">
                     <number>3</number>
@@ -1388,12 +2589,15 @@ in the range</string>
                    <property name="maximum">
                     <double>1000.000000000000000</double>
                    </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
                   </widget>
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="kd1_label_3">
                    <property name="text">
-                    <string>Kd 1: </string>
+                    <string>Kd1: </string>
                    </property>
                   </widget>
                  </item>
@@ -1434,7 +2638,7 @@ in the range</string>
                  <item row="2" column="1">
                   <widget class="QDoubleSpinBox" name="kd2_comp">
                    <property name="suffix">
-                    <string> µM</string>
+                    <string/>
                    </property>
                    <property name="decimals">
                     <number>3</number>
@@ -1442,12 +2646,15 @@ in the range</string>
                    <property name="maximum">
                     <double>1000.000000000000000</double>
                    </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
+                   </property>
                   </widget>
                  </item>
                  <item row="2" column="0">
                   <widget class="QLabel" name="kd_label_3">
                    <property name="text">
-                    <string>Kd 2: </string>
+                    <string>Kd2: </string>
                    </property>
                   </widget>
                  </item>
@@ -1468,7 +2675,7 @@ in the range</string>
                  <item row="6" column="0">
                   <widget class="QLabel" name="start_label_3">
                    <property name="text">
-                    <string>Start responce:</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(C):</string>
                    </property>
                   </widget>
                  </item>
@@ -1482,7 +2689,7 @@ in the range</string>
                  <item row="7" column="0">
                   <widget class="QLabel" name="end_label_3">
                    <property name="text">
-                    <string>End responce:</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(CL):</string>
                    </property>
                   </widget>
                  </item>
@@ -1501,6 +2708,9 @@ in the range</string>
                    <property name="maximum">
                     <double>4000000.000000000000000</double>
                    </property>
+                   <property name="singleStep">
+                    <double>0.100000000000000</double>
+                   </property>
                   </widget>
                  </item>
                  <item row="5" column="0">
@@ -1513,7 +2723,7 @@ in the range</string>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_54">
                    <property name="text">
-                    <string>Kdc: </string>
+                    <string>Kd(C): </string>
                    </property>
                   </widget>
                  </item>
@@ -1527,13 +2737,16 @@ in the range</string>
                  <item row="3" column="1">
                   <widget class="QDoubleSpinBox" name="kdc">
                    <property name="suffix">
-                    <string> µM</string>
+                    <string/>
                    </property>
                    <property name="decimals">
                     <number>3</number>
                    </property>
                    <property name="maximum">
                     <double>1000.000000000000000</double>
+                   </property>
+                   <property name="value">
+                    <double>1.000000000000000</double>
                    </property>
                   </widget>
                  </item>
@@ -1596,8 +2809,8 @@ in the range</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>472</width>
-                <height>262</height>
+                <width>478</width>
+                <height>415</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_30">
@@ -1633,7 +2846,7 @@ in the range</string>
                  <item row="2" column="2">
                   <widget class="QSpinBox" name="kd2_num_comp">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -1647,6 +2860,9 @@ in the range</string>
                      <property name="maximum">
                       <double>999.990000000000009</double>
                      </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
@@ -1656,6 +2872,9 @@ in the range</string>
                      </property>
                      <property name="maximum">
                       <double>1000.000000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -1677,14 +2896,14 @@ in the range</string>
                  <item row="5" column="0">
                   <widget class="QLabel" name="label_40">
                    <property name="text">
-                    <string>Start responce</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(C):</string>
                    </property>
                   </widget>
                  </item>
                  <item row="1" column="2">
                   <widget class="QSpinBox" name="kd_num_comp">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -1704,8 +2923,7 @@ in the range</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string># of datapoints 
-in the range</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;No. datapoints&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -1715,6 +2933,9 @@ in the range</string>
                     <widget class="QDoubleSpinBox" name="start_min_comp">
                      <property name="maximum">
                       <double>3000000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -1735,6 +2956,9 @@ in the range</string>
                     <widget class="QDoubleSpinBox" name="start_max_comp">
                      <property name="maximum">
                       <double>4000000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -1782,7 +3006,7 @@ in the range</string>
                  <item row="5" column="2">
                   <widget class="QSpinBox" name="start_number_comp">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -1840,14 +3064,14 @@ in the range</string>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_46">
                    <property name="text">
-                    <string>Kd1</string>
+                    <string>Kd1:</string>
                    </property>
                   </widget>
                  </item>
                  <item row="6" column="0">
                   <widget class="QLabel" name="label_47">
                    <property name="text">
-                    <string>End responce</string>
+                    <string>&lt;I&gt;s&lt;/I&gt;(CL):</string>
                    </property>
                   </widget>
                  </item>
@@ -1877,6 +3101,9 @@ in the range</string>
                      <property name="maximum">
                       <double>999.990000000000009</double>
                      </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
@@ -1887,6 +3114,9 @@ in the range</string>
                      <property name="maximum">
                       <double>1000.000000000000000</double>
                      </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                   </layout>
@@ -1894,14 +3124,14 @@ in the range</string>
                  <item row="6" column="2">
                   <widget class="QSpinBox" name="end_number_comp">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
                  <item row="2" column="0">
                   <widget class="QLabel" name="label_50">
                    <property name="text">
-                    <string>Kd2</string>
+                    <string>Kd2:</string>
                    </property>
                   </widget>
                  </item>
@@ -1926,12 +3156,18 @@ in the range</string>
                      <property name="maximum">
                       <double>3000000.000000000000000</double>
                      </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
                     <widget class="QDoubleSpinBox" name="end_max_comp">
                      <property name="maximum">
                       <double>4000000.000000000000000</double>
+                     </property>
+                     <property name="singleStep">
+                      <double>0.100000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -1960,7 +3196,7 @@ in the range</string>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_55">
                    <property name="text">
-                    <string>Kdc</string>
+                    <string>Kd(C):</string>
                    </property>
                   </widget>
                  </item>
@@ -1970,6 +3206,9 @@ in the range</string>
                     <widget class="QDoubleSpinBox" name="kdc_min">
                      <property name="decimals">
                       <number>3</number>
+                     </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -1994,6 +3233,9 @@ in the range</string>
                      <property name="maximum">
                       <double>100.000000000000000</double>
                      </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                   </layout>
@@ -2001,10 +3243,10 @@ in the range</string>
                  <item row="3" column="2">
                   <widget class="QSpinBox" name="kdc_num">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                    <property name="value">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -2064,7 +3306,7 @@ in the range</string>
                 <x>0</x>
                 <y>0</y>
                 <width>478</width>
-                <height>244</height>
+                <height>415</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_38">
@@ -2087,7 +3329,7 @@ in the range</string>
                  <item row="5" column="0">
                   <widget class="QLabel" name="start_label_4">
                    <property name="text">
-                    <string>Delta W:</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;∆𝜔 (s&lt;span style=&quot; vertical-align:super;&quot;&gt;-1&lt;/span&gt;):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -2122,7 +3364,7 @@ in the range</string>
                  <item row="2" column="0">
                   <widget class="QLabel" name="kd_label_4">
                    <property name="text">
-                    <string>k_ex:</string>
+                    <string>k&lt;sub&gt;ex&lt;/sub&gt; (s&lt;sup&gt;-1&lt;/sup&gt;):</string>
                    </property>
                   </widget>
                  </item>
@@ -2146,7 +3388,7 @@ in the range</string>
                  <item row="3" column="1">
                   <widget class="QDoubleSpinBox" name="pb">
                    <property name="decimals">
-                    <number>2</number>
+                    <number>3</number>
                    </property>
                    <property name="maximum">
                     <double>1.000000000000000</double>
@@ -2159,7 +3401,7 @@ in the range</string>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_57">
                    <property name="text">
-                    <string>Population B (Pb):</string>
+                    <string>p&lt;sub&gt;B&lt;/sub&gt;:</string>
                    </property>
                   </widget>
                  </item>
@@ -2212,7 +3454,7 @@ in the range</string>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_2">
                    <property name="text">
-                    <string>R20:</string>
+                    <string>R&lt;sub&gt;2,0&lt;/sub&gt; (s&lt;sup&gt;-1&lt;/sup&gt;):</string>
                    </property>
                   </widget>
                  </item>
@@ -2275,8 +3517,8 @@ in the range</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>486</width>
-                <height>214</height>
+                <width>478</width>
+                <height>415</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_41">
@@ -2360,13 +3602,19 @@ in the range</string>
                    </item>
                    <item row="0" column="0">
                     <widget class="QDoubleSpinBox" name="r20_min">
+                     <property name="decimals">
+                      <number>1</number>
+                     </property>
                      <property name="maximum">
-                      <double>999.990000000000009</double>
+                      <double>1000.000000000000000</double>
                      </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
                     <widget class="QDoubleSpinBox" name="r20_max">
+                     <property name="decimals">
+                      <number>1</number>
+                     </property>
                      <property name="maximum">
                       <double>1000.000000000000000</double>
                      </property>
@@ -2377,7 +3625,7 @@ in the range</string>
                  <item row="4" column="2">
                   <widget class="QSpinBox" name="dw_num_r">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -2391,7 +3639,7 @@ in the range</string>
                  <item row="2" column="0">
                   <widget class="QLabel" name="label_70">
                    <property name="text">
-                    <string>k_ex</string>
+                    <string>k&lt;sub&gt;ex&lt;/sub&gt; (s&lt;sup&gt;-1&lt;/sup&gt;):</string>
                    </property>
                   </widget>
                  </item>
@@ -2416,10 +3664,10 @@ in the range</string>
                  <item row="3" column="2">
                   <widget class="QSpinBox" name="pb_num_r">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                    <property name="value">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -2427,11 +3675,14 @@ in the range</string>
                   <layout class="QHBoxLayout" name="horizontalLayout_4">
                    <item>
                     <widget class="QDoubleSpinBox" name="pb_min">
+                     <property name="decimals">
+                      <number>3</number>
+                     </property>
                      <property name="maximum">
-                      <double>1.000000000000000</double>
+                      <double>0.500000000000000</double>
                      </property>
                      <property name="singleStep">
-                      <double>0.010000000000000</double>
+                      <double>0.005000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -2450,11 +3701,14 @@ in the range</string>
                    </item>
                    <item>
                     <widget class="QDoubleSpinBox" name="pb_max">
+                     <property name="decimals">
+                      <number>3</number>
+                     </property>
                      <property name="maximum">
-                      <double>1.000000000000000</double>
+                      <double>0.500000000000000</double>
                      </property>
                      <property name="singleStep">
-                      <double>0.010000000000000</double>
+                      <double>0.005000000000000</double>
                      </property>
                     </widget>
                    </item>
@@ -2463,7 +3717,7 @@ in the range</string>
                  <item row="1" column="2">
                   <widget class="QSpinBox" name="r20_num_r">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -2483,15 +3737,14 @@ in the range</string>
                     </font>
                    </property>
                    <property name="text">
-                    <string># of datapoints 
-in the range</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;No. datapoints&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_72">
                    <property name="text">
-                    <string>Population B (Pb)</string>
+                    <string>p&lt;sub&gt;B&lt;/sub&gt;:</string>
                    </property>
                   </widget>
                  </item>
@@ -2511,7 +3764,7 @@ in the range</string>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_67">
                    <property name="text">
-                    <string>R20</string>
+                    <string>R&lt;sub&gt;2,0&lt;/sub&gt; (s&lt;sup&gt;-1&lt;/sup&gt;):</string>
                    </property>
                   </widget>
                  </item>
@@ -2570,7 +3823,7 @@ in the range</string>
                  <item row="2" column="2">
                   <widget class="QSpinBox" name="kex_num_r">
                    <property name="minimum">
-                    <number>2</number>
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -2585,13 +3838,19 @@ in the range</string>
                   <layout class="QGridLayout" name="gridLayout_43">
                    <item row="0" column="0">
                     <widget class="QDoubleSpinBox" name="kex_min">
+                     <property name="decimals">
+                      <number>1</number>
+                     </property>
                      <property name="maximum">
-                      <double>999.990000000000009</double>
+                      <double>1000.000000000000000</double>
                      </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
                     <widget class="QDoubleSpinBox" name="kex_max">
+                     <property name="decimals">
+                      <number>1</number>
+                     </property>
                      <property name="maximum">
                       <double>1000.000000000000000</double>
                      </property>
@@ -2615,7 +3874,7 @@ in the range</string>
                  <item row="4" column="0">
                   <widget class="QLabel" name="label">
                    <property name="text">
-                    <string>Delta W</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;∆𝜔 (s&lt;span style=&quot; vertical-align:super;&quot;&gt;-1&lt;/span&gt;):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>

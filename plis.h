@@ -91,6 +91,8 @@ private slots:
 
     void on_actionTwo_binding_sites_triggered();
 
+    void on_actionFour_binding_sites_triggered();
+
     void on_actionCompetitive_binding_triggered();
 
     void on_actionRemove_a_fitted_curve_triggered();
@@ -108,6 +110,8 @@ private slots:
     void on_actionOptimize_fit_triggered();
 
     void on_actionStandard_triggered();
+
+    void on_actionTitration_NMR_triggered();
 
     void on_switch_to_CPGM_triggered();
 
@@ -140,27 +144,28 @@ private:
     void change_penColor(int);
     QVector<double> kd_testVector{0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000, 100000, 1000000};
                                 //nM                uM           mM                     M
-
     QString xlabel{};
     QString ylabel{};
     QCPTextElement *title{};
     QFont xaxis_font{QFont("Helvetica",9)}, yaxis_font{QFont("Helvetica",9)}, title_font{QFont("Helvetica",9)}, legend_font{QFont("Helvetica",9)};
-    QString mode{"standard"};
+    QString mode{"standard"}; //"standard": normal titration, "chemshift": tiitration where concentration does not affect relevant signal, "CPMG": relaxation dispersion
 
     //private funtions
     void render_graphs();
     void disconnect_when_no_dataset(bool);
     void write_In_Table();
-    void write_In_Graph();
     void draw_curve();
     void write_In_Result();
     void delete_dataSets(int i=(-1));
     void check_guess(double &y_calc, double &chi2, double &chi2_temp, int &best_index_kd1, int &best_index_kd2);
     QString get_name(QString);
-    void make_fitmrq(Fitmrq &curve_fit);
-    void make_fitmrq2(Fitmrq2 &curve_fit);
+    int make_fitmrq(Fitmrq &curve_fit);
+    int make_fitmrq2(Fitmrq2 &curve_fit);
     void set_scatterstyle();
-    void change_mode();
+    void change_mode(QString new_mode);
+    void setAxisLabels(QString xlab, QString ylab);
+    void handleFitDidNotWork(int did_fit_work, Data *dataSet);
+    void checkMode(bool standard, bool chemshift, bool cpmg);
 };
 
 #endif // PLIS_H

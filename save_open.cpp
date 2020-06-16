@@ -117,9 +117,8 @@ int open_project(QMainWindow *this1, QString &x, QString &y, QVector<Data *> &da
                 }
             }
 
-            else if(word[0]=="y-axis_font:"){
+            else if(word[0]=="y-axis_font:")
                 yaxis_font=QFont(QString::fromStdString(word[1]),toInt(word[2]));
-            }
 
             else if(word[0]=="DataSets:"){
                 double temp;
@@ -167,9 +166,8 @@ int open_project(QMainWindow *this1, QString &x, QString &y, QVector<Data *> &da
                     s+=QString::fromStdString(word[j]) + " ";
                 title->setText(s);
             }
-            else if(word[0]=="title_font:"){
+            else if(word[0]=="title_font:")
                 title->setFont(QFont(QString::fromStdString(word[1]),toInt(word[2])));
-            }
 
             else if(word[0]=="a:"){
                 dataSets[current_dataset_local]->a.clear();
@@ -226,40 +224,9 @@ int open_project(QMainWindow *this1, QString &x, QString &y, QVector<Data *> &da
             else if(word[0]=="pen_curve:")
                 dataSets[current_dataset_local]->pen_curve.setColor(QString::fromStdString(word[1]));
 
-            else if(word[0]=="style:"){
-                int m=toInt(word[1]);
-                if (m==5)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssDisc);
-                else if(m==6)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssSquare);
-                else if(m==7)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssDiamond);
-                else if(m==8)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssStar);
-                else if(m==2)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCross);
-                else if(m==3)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssPlus);
-                else if(m==4)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCircle);
-                else if(m==9)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssTriangle);
-                else if(m==10)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssTriangleInverted);
-                else if(m==11)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCrossSquare);
-                else if(m==12)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssPlusSquare);
-                else if(m==13)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCrossCircle);
-                else if(m==14)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssPlusCircle);
-                else if(m==15)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssPeace);
-                else if(m==17)
-                    dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCustom);
-
-                dataSets[current_dataset_local]->style.setSize(toInt(word[2]));
+            else if(word[0]=="style:") {
+                void setStyles(QVector<Data *> &dataSets, int current_dataset_local, const std::string &_style, const std::string &_size);
+                setStyles(dataSets, current_dataset_local, word[1], word[2]);
             }
             else if(word[0]=="model:"){
                 QString s{};
@@ -301,11 +268,62 @@ int open_project(QMainWindow *this1, QString &x, QString &y, QVector<Data *> &da
         }
         file.close();
     }
-    else {
+    else
         return 1;
-    }
     return 0;
 }
+
+void setStyles(QVector<Data *> &dataSets, int current_dataset_local, const std::string &_style, const std::string &_size)
+{
+    int m=toInt(_style);
+    if (m==5)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssDisc);
+    else if(m==6)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssSquare);
+    else if(m==7)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssDiamond);
+    else if(m==8)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssStar);
+    else if(m==2)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCross);
+    else if(m==3)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssPlus);
+    else if(m==4)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCircle);
+    else if(m==9)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssTriangle);
+    else if(m==10)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssTriangleInverted);
+    else if(m==11)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCrossSquare);
+    else if(m==12)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssPlusSquare);
+    else if(m==13)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCrossCircle);
+    else if(m==14)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssPlusCircle);
+    else if(m==15)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssPeace);
+    else if(m==17)
+        dataSets[current_dataset_local]->style.setShape(QCPScatterStyle::ssCustom);
+
+    dataSets[current_dataset_local]->style.setSize(toInt(_size));
+}
+
+void saveImage(Plis *plis, QCustomPlot *plot_area, QVector<Data*> dataSets, int current_dataSet)
+{
+    QString saveFilename = QFileDialog::getSaveFileName(plis, "Save as", dataSets[current_dataSet]->name, "PNG(*.png);; TIFF(*.tiff *.tif);; "
+                                                                                 "JPEG(*.jpg *.jpeg);; PDF(*.pdf)");
+    if (saveFilename=="")
+        return;
+    QPixmap pixmap(plot_area->size());
+    plot_area->render(&pixmap, QPoint(), QRegion());
+    if (!saveFilename.contains(".pdf"))
+        pixmap.save(saveFilename);
+    else
+        plot_area->savePdf(saveFilename, true);
+}
+
 
 void line2words(const std::string& line, std::vector<std::string> &word)
 {
@@ -339,9 +357,7 @@ void toDouble_cpmg(std::string line, Data* &data){
     std::istringstream iss{line};
     double n{}, r{},dy{};
     iss >> n >> r >> dy;
-    data->n_cpmgVector.push_back(n);
-    data->R2effVector.push_back(r);
-    data->dyVector.push_back(dy);
+    data->pushBackCPMGdata(n, r, dy);
 }
 
 void toDouble(const std::string& word, double &temp){

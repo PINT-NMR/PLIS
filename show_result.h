@@ -19,6 +19,15 @@ public:
 private:
     Ui::Show_result *ui;
     Data* data{};
+
+    void showResultOneSite();
+    void showResultTwoSite();
+    void showResultFourSite();
+    void showResultComp();
+    void showResultCPMG();
+    void writeLine(QLineEdit *line, double res, double err, QString unit);
+    void writeLine(QLineEdit *valbox, QLineEdit *errbox, double res, double err, QString unit);
+
 };
 
 #endif // SHOW_RESULT_H

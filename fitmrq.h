@@ -4,34 +4,45 @@
 #include "calculations.h"
 #include "nr3.h"
 
+// 200530
+// - added constructors that take an ia vector
+
 struct Fitmrq {
-    static const Int NDONE=4, ITMAX=1000;
-    Int ndat, ma, mfit;
+    static const int NDONE=4, ITMAX=1000;
+    int ndat, ma, mfit;
     VecDoub_I x, x2, y, volume, sig;
-    Doub tol;
-    void (*funcs)(const Doub, const Doub, VecDoub_I &, Doub &, VecDoub_O &);
-    double (*funcs2)(const Doub, const Doub, const std::vector<double> &);
+    double tol;
+    void (*funcs)(const double, const double, VecDoub_I &, double &, VecDoub_O &);
+    double (*funcs2)(const double, const double, const std::vector<double> &);
 	VecBool ia;
     MatDoub alpha;
     VecDoub a;
     MatDoub covar;
-	Doub chisq;
+    double chisq;
     bool did_gauss_work;
 
     Fitmrq(VecDoub_I &xx, VecDoub_I &xx2,VecDoub_I &yy, VecDoub_I & v,VecDoub_I &ssig, VecDoub_I &aa,
-    void funks(const Doub, const Doub, VecDoub_I &, Doub &, VecDoub_O &), double funks2(const Doub, const Doub, const std::vector<double> &),
-           const Doub TOL=1.e-3) : ndat(xx.size()), ma(aa.size()), x(xx), x2(xx2),y(yy), volume(v), sig(ssig),
+    void funks(const double, const double, VecDoub_I &, double &, VecDoub_O &), double funks2(const double, const double, const std::vector<double> &),
+           const double TOL=1.e-3) : ndat(xx.size()), ma(aa.size()), x(xx), x2(xx2),y(yy), volume(v), sig(ssig),
     tol(TOL), funcs(funks), funcs2(funks2),ia(ma), alpha(ma,ma), a(aa), covar(ma,ma) {
-        for (Int i=0;i<ma;i++)
+        for (int i=0;i<ma;i++)
             ia[i] = true;
     }
 
-	void hold(const Int i, const Doub val) {ia[i]=false; a[i]=val;}
-	void free(const Int i) {ia[i]=true;}
+    Fitmrq(VecDoub_I &xx, VecDoub_I &xx2,VecDoub_I &yy, VecDoub_I & v,VecDoub_I &ssig, VecDoub_I &aa, VecBool &iia,
+    void funks(const double, const double, VecDoub_I &, double &, VecDoub_O &), double funks2(const double, const double, const std::vector<double> &),
+           const double TOL=1.e-3) : ndat(xx.size()), ma(aa.size()), x(xx), x2(xx2),y(yy), volume(v), sig(ssig),
+    tol(TOL), funcs(funks), funcs2(funks2),ia(ma), alpha(ma,ma), a(aa), covar(ma,ma) {
+        if (iia.size() == ia.size())
+            ia = iia;
+        else
+            for (int i=0;i<ma;i++)
+                ia[i] = true;
+    }
 
     int fit() {
-		Int j,k,l,iter,done=0;
-		Doub alamda=.001,ochisq;
+        int j,k,l,iter,done=0;
+        double alamda=.001,ochisq;
 		VecDoub atry(ma),beta(ma),da(ma);
 		mfit=0;
 		for (j=0;j<ma;j++) if (ia[j]) mfit++;
@@ -62,7 +73,7 @@ struct Fitmrq {
 			for (j=0,l=0;l<ma;l++)
 				if (ia[l]) atry[l]=a[l]+da[j++];
 			mrqcof(atry,covar,da);
-			if (abs(chisq-ochisq) < MAX(tol,tol*chisq)) done++;
+            if (fabs(chisq-ochisq) < std::max(tol,tol*chisq)) done++;
 			if (chisq < ochisq) {
 				alamda *= 0.1;
 				ochisq=chisq;
@@ -76,14 +87,12 @@ struct Fitmrq {
 				chisq=ochisq;
 			}
         }
-        return 2;
-        //throw("Fitmrq too many iterations");
+        return 2; // too many iterations
 	}
 
-
 	void mrqcof(VecDoub_I &a, MatDoub_O &alpha, VecDoub_O &beta) {
-		Int i,j,k,l,m;
-		Doub ymod,wt,sig2i,dy;
+        int i,j,k,l,m;
+        double ymod,wt,sig2i,dy;
 		VecDoub dyda(ma);
 		for (j=0;j<mfit;j++) {
 			for (k=0;k<=j;k++) alpha[j][k]=0.0;
@@ -109,14 +118,14 @@ struct Fitmrq {
 	}
 
 	void covsrt(MatDoub_IO &covar) {
-		Int i,j,k;
+        int i,j,k;
 		for (i=mfit;i<ma;i++)
 			for (j=0;j<i+1;j++) covar[i][j]=covar[j][i]=0.0;
 		k=mfit-1;
 		for (j=ma-1;j>=0;j--) {
 			if (ia[j]) {
-				for (i=0;i<ma;i++) SWAP(covar[i][k],covar[i][j]);
-				for (i=0;i<ma;i++) SWAP(covar[k][i],covar[j][i]);
+                for (i=0;i<ma;i++) std::swap(covar[i][k],covar[i][j]);
+                for (i=0;i<ma;i++) std::swap(covar[k][i],covar[j][i]);
 				k--;
 			}
 		}
@@ -140,33 +149,41 @@ struct Fitmrq {
 };
 
 struct Fitmrq2 {
-    static const Int NDONE=4, ITMAX=1000;
-    Int ndat, ma, mfit;
+    static const int NDONE=4, ITMAX=1000;
+    int ndat, ma, mfit;
     VecDoub_I x, x2,x3, y, volume, sig;
-    Doub tol;
-    void (*funcs)(const Doub, const Doub, const Doub, VecDoub_I &, Doub &, VecDoub_O &);
-    double (*funcs2)(const Doub, const Doub, const Doub,const std::vector<double> &);
+    double tol;
+    void (*funcs)(const double, const double, const double, VecDoub_I &, double &, VecDoub_O &);
+    double (*funcs2)(const double, const double, const double,const std::vector<double> &);
     VecBool ia;
     MatDoub alpha;
     VecDoub a;
     MatDoub covar;
-    Doub chisq;
+    double chisq;
     bool did_gauss_work;
 
     Fitmrq2(VecDoub_I &xx, VecDoub_I &xx2,VecDoub_I &xx3,VecDoub_I &yy, VecDoub_I & v,VecDoub_I &ssig, VecDoub_I &aa,
-    void funks(const Doub, const Doub, const Doub,VecDoub_I &, Doub &, VecDoub_O &), double funks2(const Doub, const Doub, const Doub,const std::vector<double> &),
-           const Doub TOL=1.e-3) : ndat(xx.size()), ma(aa.size()), x(xx), x2(xx2),x3(xx3),y(yy), volume(v), sig(ssig),
+    void funks(const double, const double, const double,VecDoub_I &, double &, VecDoub_O &), double funks2(const double, const double, const double,const std::vector<double> &),
+           const double TOL=1.e-3) : ndat(xx.size()), ma(aa.size()), x(xx), x2(xx2),x3(xx3),y(yy), volume(v), sig(ssig),
     tol(TOL), funcs(funks), funcs2(funks2),ia(ma), alpha(ma,ma), a(aa), covar(ma,ma) {
-        for (Int i=0;i<ma;i++)
+        for (int i=0;i<ma;i++)
             ia[i] = true;
     }
 
-    void hold(const Int i, const Doub val) {ia[i]=false; a[i]=val;}
-    void free(const Int i) {ia[i]=true;}
+    Fitmrq2(VecDoub_I &xx, VecDoub_I &xx2,VecDoub_I &xx3,VecDoub_I &yy, VecDoub_I & v,VecDoub_I &ssig, VecDoub_I &aa, VecBool &iia,
+    void funks(const double, const double, const double,VecDoub_I &, double &, VecDoub_O &), double funks2(const double, const double, const double,const std::vector<double> &),
+           const double TOL=1.e-3) : ndat(xx.size()), ma(aa.size()), x(xx), x2(xx2),x3(xx3),y(yy), volume(v), sig(ssig),
+    tol(TOL), funcs(funks), funcs2(funks2),ia(ma), alpha(ma,ma), a(aa), covar(ma,ma) {
+    if (iia.size() == ia.size())
+        ia = iia;
+    else
+        for (int i=0;i<ma;i++)
+            ia[i] = true;
+    }
 
     int fit() {
-        Int j,k,l,iter,done=0;
-        Doub alamda=.001,ochisq;
+        int j,k,l,iter,done=0;
+        double alamda=.001,ochisq;
         VecDoub atry(ma),beta(ma),da(ma);
         mfit=0;
         for (j=0;j<ma;j++) if (ia[j]) mfit++;
@@ -197,7 +214,7 @@ struct Fitmrq2 {
             for (j=0,l=0;l<ma;l++)
                 if (ia[l]) atry[l]=a[l]+da[j++];
             mrqcof(atry,covar,da);
-            if (abs(chisq-ochisq) < MAX(tol,tol*chisq)) done++;
+            if (fabs(chisq-ochisq) < std::max(tol,tol*chisq)) done++;
             if (chisq < ochisq) {
                 alamda *= 0.1;
                 ochisq=chisq;
@@ -211,14 +228,13 @@ struct Fitmrq2 {
                 chisq=ochisq;
             }
         }
-        return 2;
-        //throw("Fitmrq too many iterations");
+        return 2; // too many iterations
     }
 
 
     void mrqcof(VecDoub_I &a, MatDoub_O &alpha, VecDoub_O &beta) {
-        Int i,j,k,l,m;
-        Doub ymod,wt,sig2i,dy;
+        int i,j,k,l,m;
+        double ymod,wt,sig2i,dy;
         VecDoub dyda(ma);
         for (j=0;j<mfit;j++) {
             for (k=0;k<=j;k++) alpha[j][k]=0.0;
@@ -244,14 +260,14 @@ struct Fitmrq2 {
     }
 
     void covsrt(MatDoub_IO &covar) {
-        Int i,j,k;
+        int i,j,k;
         for (i=mfit;i<ma;i++)
             for (j=0;j<i+1;j++) covar[i][j]=covar[j][i]=0.0;
         k=mfit-1;
         for (j=ma-1;j>=0;j--) {
             if (ia[j]) {
-                for (i=0;i<ma;i++) SWAP(covar[i][k],covar[i][j]);
-                for (i=0;i<ma;i++) SWAP(covar[k][i],covar[j][i]);
+                for (i=0;i<ma;i++) std::swap(covar[i][k],covar[i][j]);
+                for (i=0;i<ma;i++) std::swap(covar[k][i],covar[j][i]);
                 k--;
             }
         }
@@ -276,33 +292,44 @@ struct Fitmrq2 {
 };
 
 struct Fitmrq3 {
-    static const Int NDONE=4, ITMAX=1000;
-    Int ndat, ma, mfit;
+    static const int NDONE=4, ITMAX=1000;
+    int ndat, ma, mfit;
     VecDoub_I x, y, sig;
-    Doub tol;
-    void (*funcs)(const Doub, VecDoub_I &, Doub &, VecDoub_O &);
-    double (*funcs2)(const Doub, const std::vector<double> &);
+    double tol;
+    void (*funcs)(const double, VecDoub_I &, double &, VecDoub_O &);
+    double (*funcs2)(const double, const std::vector<double> &);
     VecBool ia;
     MatDoub alpha;
     VecDoub a;
     MatDoub covar;
-    Doub chisq;
+    double chisq;
     bool did_gauss_work;
 
     Fitmrq3(VecDoub_I &xx, VecDoub_I &yy,VecDoub_I &ssig, VecDoub_I &aa,
-    void funks(const Doub, VecDoub_I &, Doub &, VecDoub_O &), double funks2(const Doub, const std::vector<double> &),
-           const Doub TOL=1.e-3) : ndat(xx.size()), ma(aa.size()), x(xx), y(yy), sig(ssig),
+    void funks(const double, VecDoub_I &, double &, VecDoub_O &), double funks2(const double, const std::vector<double> &),
+           const double TOL=1.e-3) : ndat(xx.size()), ma(aa.size()), x(xx), y(yy), sig(ssig),
     tol(TOL), funcs(funks), funcs2(funks2),ia(ma), alpha(ma,ma), a(aa), covar(ma,ma) {
-        for (Int i=0;i<ma;i++)
+        for (int i=0;i<ma;i++)
             ia[i] = true;
     }
 
-    void hold(const Int i, const Doub val) {ia[i]=false; a[i]=val;}
-    void free(const Int i) {ia[i]=true;}
+    Fitmrq3(VecDoub_I &xx, VecDoub_I &yy,VecDoub_I &ssig, VecDoub_I &aa, VecBool &iia,
+    void funks(const double, VecDoub_I &, double &, VecDoub_O &), double funks2(const double, const std::vector<double> &),
+           const double TOL=1.e-3) : ndat(xx.size()), ma(aa.size()), x(xx), y(yy), sig(ssig),
+    tol(TOL), funcs(funks), funcs2(funks2),ia(ma), alpha(ma,ma), a(aa), covar(ma,ma) {
+        if (iia.size() == ia.size())
+            ia = iia;
+        else
+            for (int i=0;i<ma;i++)
+                ia[i] = true;
+    }
+
+    void hold(const int i, const double val) {ia[i]=false; a[i]=val;}
+    void free(const int i) {ia[i]=true;}
 
     int fit() {
-        Int j,k,l,iter,done=0;
-        Doub alamda=.001,ochisq;
+        int j,k,l,iter,done=0;
+        double alamda=.001,ochisq;
         VecDoub atry(ma),beta(ma),da(ma);
         mfit=0;
         for (j=0;j<ma;j++) if (ia[j]) mfit++;
@@ -333,7 +360,7 @@ struct Fitmrq3 {
             for (j=0,l=0;l<ma;l++)
                 if (ia[l]) atry[l]=a[l]+da[j++];
             mrqcof(atry,covar,da);
-            if (abs(chisq-ochisq) < MAX(tol,tol*chisq)) done++;
+            if (fabs(chisq-ochisq) < std::max(tol,tol*chisq)) done++;
             if (chisq < ochisq) {
                 alamda *= 0.1;
                 ochisq=chisq;
@@ -348,13 +375,11 @@ struct Fitmrq3 {
             }
         }
         return 2;
-        //throw("Fitmrq too many iterations");
     }
 
-
     void mrqcof(VecDoub_I &a, MatDoub_O &alpha, VecDoub_O &beta) {
-        Int i,j,k,l,m;
-        Doub ymod,wt,sig2i,dy;
+        int i,j,k,l,m;
+        double ymod,wt,sig2i,dy;
         VecDoub dyda(ma);
         for (j=0;j<mfit;j++) {
             for (k=0;k<=j;k++) alpha[j][k]=0.0;
@@ -380,14 +405,14 @@ struct Fitmrq3 {
     }
 
     void covsrt(MatDoub_IO &covar) {
-        Int i,j,k;
-        for (i=mfit;i<ma;i++)
+        unsigned int i,j,k;
+        for (i=unsigned(mfit);i<unsigned(ma);i++)
             for (j=0;j<i+1;j++) covar[i][j]=covar[j][i]=0.0;
         k=mfit-1;
         for (j=ma-1;j>=0;j--) {
             if (ia[j]) {
-                for (i=0;i<ma;i++) SWAP(covar[i][k],covar[i][j]);
-                for (i=0;i<ma;i++) SWAP(covar[k][i],covar[j][i]);
+                for (i=0;i<ma;i++) std::swap(covar[i][k],covar[i][j]);
+                for (i=0;i<ma;i++) std::swap(covar[k][i],covar[j][i]);
                 k--;
             }
         }

@@ -1,6 +1,9 @@
 #include "data.h"
 #include "plis.h"
 
+// 200612
+// - took absolute values of Kd:s when setting results
+
 Data::Data()
 {
     concVector.push_back(0.0);
@@ -135,4 +138,157 @@ void Data::update_comp_vector(double start){
     for (int i=0;i<protein_conc_vector.size();i++){
         comp_vector.push_back((start * volumeVector[0])/volumeVector[i]);
     }
+}
+
+void Data::clearVectors() {
+    responceVector.clear();
+    concVector.clear();
+    volumeVector.clear();
+}
+
+void Data::pushBackData(double response, double conc, double volume, double protConc, double err) {
+    responceVector.push_back(response);
+    concVector.push_back(conc);
+    volumeVector.push_back(volume);
+    protein_conc_vector.push_back(protConc);
+    error_vector.push_back(err);
+}
+
+void Data::insertData(int i, double response, double conc, double volume, double protConc, double err) {
+    responceVector.insert(i, response);
+    concVector.insert(i, conc);
+    volumeVector.insert(i, volume);
+    protein_conc_vector.insert(i, protConc);
+    error_vector.insert(i, err);
+}
+
+void Data::removeData(int i) {
+    responceVector.remove(i);
+    concVector.remove(i);
+    volumeVector.remove(i);
+    protein_conc_vector.remove(i);
+    error_vector.remove(i);
+}
+
+void Data::pushBackCPMGdata(double n_cpmg, double r2eff, double dr2eff) {
+    n_cpmgVector.push_back(n_cpmg);
+    R2effVector.push_back(r2eff);
+    dyVector.push_back(dr2eff);
+}
+
+void Data::insertCPMGdata(int i, double n_cpmg, double r2eff, double dr2eff) {
+    n_cpmgVector.insert(i,n_cpmg);
+    R2effVector.insert(i,r2eff);
+    dyVector.insert(i,dr2eff);
+}
+
+void Data::removeCPMGdata(int i) {
+    n_cpmgVector.remove(i);
+    R2effVector.remove(i);
+    dyVector.remove(i);
+}
+
+void Data::setModel_a_dydaOneSite() {
+    a = {responceVector[0], responceVector.last(), -1., concVector[0], protein_conc};
+    dyda = std::vector<double>(a.size(), 0.);
+    model="One bind site";
+    num_bind_site=1;
+}
+
+void Data::setModel_a_dydaTwoSite() {
+    a = {responceVector[0], -1., -1., -1, -1., concVector[0], protein_conc};
+    dyda = std::vector<double>(a.size(), 0.);
+    model="Two bind site";
+    num_bind_site=2;
+}
+
+void Data::setModel_a_dydaFourSite() {
+    a = {responceVector[0], -1., -1., -1, -1., -1., -1., -1, -1., concVector[0], protein_conc};
+    dyda = std::vector<double>(a.size(), 0.);
+    model="Four bind site";
+    num_bind_site=5;  // note that this is just an index
+}
+
+void Data::setModel_a_dydaCompTwoSite(double comp_conc) {
+    a = {responceVector[0], -1., -1., -1, -1., concVector[0], protein_conc, comp_conc};
+    dyda = std::vector<double>(a.size(), 0.);
+    model="Competitive binding";
+    num_bind_site=3;
+}
+
+void Data::setModel_a_dydaCPMG()
+{
+    a = {0., 0., 0., 0., ligand_cpmg};
+    dyda = {0., 0., 0., 0., 0.};
+    model="CPMG-model";
+    num_bind_site=4;
+}
+
+void Data::setPenColor(int i) {
+    switch (i%5) {
+        case 0: pen.setColor("black");  break;
+        case 1: pen.setColor("red"); break;
+        case 2: pen.setColor("green"); break;
+        case 3: pen.setColor("blue"); break;
+        case 4: pen.setColor("magenta"); break;
+    }
+}
+
+void Data::setModelIfNoFit()
+{
+    model="No fit made";
+    num_bind_site=0;
+}
+
+void Data::addCPMGresults(const std::vector<double> &fitted_a, double fitted_chi2, const std::vector<std::vector<double>> &temp_vector)
+{
+    a=fitted_a;
+    chi2=fitted_chi2;
+    kd_cpmg=CPMG_kd(a);
+    calc_data[0] = QVector<double>::fromStdVector(temp_vector[0]);
+    calc_data[1] = QVector<double>::fromStdVector(temp_vector[1]);
+    curve_visible=true;
+    has_curve=true;
+}
+
+void Data::removeFittedCurve()
+{
+    has_curve=false;
+    curve_visible=false;
+    setModelIfNoFit();
+    a[2]=0;
+}
+
+void Data::setResult(const std::vector<double> &_a, double _chi2, std::vector<double> &_calc_data0, std::vector<double> &_calc_data1)
+{
+    a=_a;
+    // We are fitting absolute values of Kd:s. N.B. CPMG already taken care of
+    if (model=="One bind site")
+        a[2]=fabs(a[2]);
+    else if (model == "Two bind site") {
+        a[3]=fabs(a[3]);
+        a[4]=fabs(a[4]);
+    }
+    else if (model == "Four bind site") {
+        a[5]=fabs(a[5]);
+        a[6]=fabs(a[6]);
+        a[7]=fabs(a[7]);
+        a[8]=fabs(a[8]);
+    }
+    else if (model == "Competitive binding") {
+        a[2]=fabs(a[2]);
+        a[3]=fabs(a[3]);
+        a[4]=fabs(a[4]);
+    }
+    chi2=_chi2;
+    calc_data[0] = QVector<double>::fromStdVector(_calc_data0);
+    calc_data[1] = QVector<double>::fromStdVector(_calc_data1);
+    curve_visible=true;
+    has_curve=true;
+}
+
+void Data::dataAndCurveVisible(bool dataVis, bool curveVis)
+{
+    data_visible=dataVis;
+    curve_visible=curveVis;
 }

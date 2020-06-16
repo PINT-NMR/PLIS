@@ -14,10 +14,10 @@ class Guess_parameters : public QDialog
     Q_OBJECT
 
 public:
-    explicit Guess_parameters(QWidget *parent, Data *&d);
+    explicit Guess_parameters(QWidget *parent, Data *&d, QString _mode);
     ~Guess_parameters();
 
-    bool a0{},a1{},a2{},a3{},a4{},a5{};
+    std::vector<bool> a{false, false, false, false, false, false}; // N.B. true values means that fit.ia values should be set to false.
 
 private slots:
     void on_pushButton_clicked();
@@ -171,6 +171,7 @@ private slots:
 private:
     Ui::Guess_parameters *ui;
     Data *data{};
+    QString mode{"standard"};
 };
 
 #endif // GUESS_PARAMETERS_H

@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
     QSplashScreen *splash=new QSplashScreen;
     splash->setPixmap(pixmap);
     splash->show();
-    QTimer::singleShot(3000,splash,SLOT(close()));
-    QTimer::singleShot(3000,p,SLOT(showMaximized()));
+    QTimer::singleShot(1000,splash,SLOT(close()));
+    QTimer::singleShot(1000,p,SLOT(showMaximized()));
     //p->showMaximized();
 
     return a.exec();
